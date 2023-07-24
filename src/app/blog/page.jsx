@@ -17,8 +17,7 @@ async function getData() {
 
 const Blog = async () => {
 
-  // const data = await getData()
-  const data = [];
+  const data = await getData()
 
   return (
     <div className={styles.mainContainer}>
