@@ -8,40 +8,14 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 
 const Dashboard = () => {
-  // const [data, setData] = useState([])
-  // const [err, setErr] = useState(false)
-  // const [isLoading, setIsLoading] = useState(false)
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     setIsLoading(true)
-  //     const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
-  //       cache: "no-store"
-  //     })
-
-  //     if (!res.ok) {
-  //       setErr(true)
-  //     }
-
-  //     const data = await res.json()
-
-  //     setData(data)
-  //     setIsLoading(false)
-  //   }
-  //   getData()
-  // }, [])
 
   const session = useSession()
-
-  // console.log(session)
-
   const router = useRouter()
-
   const fetcher = (...args) => fetch(...args).then(res => res.json())
-
-  const { data, mutate, error, isLoading } = useSWR(`/api/posts?username=${session?.data?.user.name}`, fetcher)
-
-  console.log(data)
+  const { data, mutate, error, isLoading } = useSWR(
+    `/api/posts?username=${session?.data?.user.name}`,
+    fetcher
+  )
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -105,6 +79,7 @@ const Dashboard = () => {
                   width={20}
                   height={20}
                   className={styles.delete}
+                  onClick={() => handleDelete(post._id)}
                 />
               </div>
             ))}
