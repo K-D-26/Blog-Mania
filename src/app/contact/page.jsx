@@ -5,10 +5,10 @@ import emailjs from '@emailjs/browser';
 import styles from './page.module.css';
 import Image from 'next/image';
 
-export const metadata = {
-  title: 'Blog-Mania Contact Information',
-  description: 'This is Contact Page',
-};
+// export const metadata = {
+//   title: 'Blog-Mania Contact Information',
+//   description: 'This is Contact Page',
+// };
 
 const Contact = () => {
   // EmailJS
