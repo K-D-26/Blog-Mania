@@ -48,6 +48,7 @@ const Dashboard = () => {
         method: "DELETE",
       })
       mutate()
+      console.log("deleted")
     } catch (err) {
       console.log(err)
     }
@@ -73,14 +74,7 @@ const Dashboard = () => {
                   <Image src={post.img} alt='' width={200} height={100} />
                 </div>
                 <h2 className={styles.postTitle}>{post.title}</h2>
-                <Image
-                  src="/delete.gif"
-                  alt=''
-                  width={20}
-                  height={20}
-                  className={styles.delete}
-                  onClick={() => handleDelete(post._id)}
-                />
+                <Image src="/delete.gif" alt='' width={20} height={20} className={styles.delete} onClick={() => handleDelete(post._id)} />
               </div>
             ))}
         </div>
