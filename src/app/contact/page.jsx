@@ -4,6 +4,8 @@ import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import styles from './page.module.css';
 import Image from 'next/image';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 // export const metadata = {
 //   title: 'Blog-Mania Contact Information',
@@ -11,6 +13,19 @@ import Image from 'next/image';
 // };
 
 const Contact = () => {
+
+  // Toast
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  }
+
   // EmailJS
   const form = useRef();
 
@@ -26,7 +41,8 @@ const Contact = () => {
       )
       .then(
         result => {
-          // e.target.reset();
+          toast.success('Your message has been sent!', toastOptions);
+          e.target.reset();
         },
         error => {
           console.log(error.text);
@@ -52,12 +68,14 @@ const Contact = () => {
             name='user_name'
             className={styles.input}
             placeholder='name'
+            required
           />
           <input
             type='email'
             name='user_email'
             className={styles.input}
             placeholder='email'
+            required
           />
           <textarea
             name='message'
@@ -65,10 +83,12 @@ const Contact = () => {
             placeholder='message'
             cols='30'
             rows='10'
+            required
           ></textarea>
-          <button className={styles.button} onClick={sendEmail}>
+          <button className={styles.button} type="submit">
             Send
           </button>
+          <ToastContainer />
         </form>
       </div>
     </div>
